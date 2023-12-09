@@ -1,4 +1,13 @@
 def read_input(file):
+    """
+    Read input from a file and return a list of lists containing integers.
+
+    Args:
+        file (str): The path to the input file.
+
+    Returns:
+        list: A list of lists containing integers read from the file.
+    """
     with open(file) as f:
         lines = f.readlines()
         inputs = []
@@ -10,13 +19,31 @@ def read_input(file):
         return inputs
 
 def get_diff(inputs: list):
+    """
+    Calculate the difference between consecutive elements in a list.
+
+    Args:
+        inputs (list): The input list.
+
+    Returns:
+        list: A list of differences between consecutive elements.
+    """
     diff = []
     for i in range(len(inputs) - 1):
         diff.append(inputs[i+1] - inputs[i])
     return diff
 
-
 def calculate_pyramid_diff(inputs: list, output: list):
+    """
+    Calculate the pyramid difference recursively.
+
+    Args:
+        inputs (list): The input list.
+        output (list): The output list to store intermediate results.
+
+    Returns:
+        list: The final output list containing all intermediate results.
+    """
     line_diff = get_diff(inputs)
     #if all element in line_diff is 0, then it is the end of pyramid
     output.append(inputs)
@@ -25,7 +52,13 @@ def calculate_pyramid_diff(inputs: list, output: list):
     else:
         return calculate_pyramid_diff(line_diff, output)
 
+
 def part1():
+    """
+    Solve part 1 of the problem.
+
+    Reads input from 'input1.txt', calculates the pyramid difference, and prints the sum of the last elements of each pyramid.
+    """
     inputs = read_input('input1.txt')
     print(inputs)
     all_sum = 0
@@ -41,6 +74,11 @@ def part1():
     print(all_sum)
 
 def part2():
+    """
+    Solve part 2 of the problem.
+
+    Reads input from 'input2.txt', calculates the pyramid difference, and prints the sum of the first elements of each pyramid with alternating signs.
+    """
     inputs = read_input('input2.txt')
     print(inputs)
     all_sum = 0
